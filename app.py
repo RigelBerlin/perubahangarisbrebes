@@ -151,7 +151,6 @@ with st.sidebar:
     st.markdown('</div>', unsafe_allow_html=True)
 
 if menu == "Home":
-    st.title("Prediksi Perubahan Garis Pantai")
     ##################################
     # Layout card
     col1, col2, col3, col4 = st.columns(4)
@@ -203,7 +202,7 @@ if menu == "Home":
     ##################################
 
     # === 1. Baca data dari shapefile ===
-    shp_path = "D:/Skripsi_shoreline change/GarisPantai19902024.shp"
+    shp_path = "shoreline/GarisPantai19902024.shp"
     gdf = gd.read_file(shp_path)
 
     # Pastikan DATE_ sebagai datetime
@@ -680,5 +679,6 @@ elif menu == "Evaluasi Prediksi":
     st.markdown("""
     Perbandingan dilakukan antar hasil prediksi tahun 2034 dan 2044 dengan garis pantai historis untuk melihat tren abrasi atau akresi.
     """)
+
 
 
