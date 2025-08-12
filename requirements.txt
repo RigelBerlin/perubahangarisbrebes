@@ -1,5 +1,4 @@
 numpy
-folium
 streamlit-folium
 streamlit-option-menu
 pandas
