@@ -1,10 +1,11 @@
-numpy
-streamlit-folium
-streamlit-option-menu
-pandas
-branca
-st-aggrid
-plotly
-matplotlib
-geopandas==0.10.2
+branca==0.8.1
+folium==0.19.5
+geopandas==1.0.1
+matplotlib==3.8.2
+numpy==2.3.2
+pandas==2.3.1
+plotly==5.21.0
+streamlit==1.46.1
+streamlit_folium==0.25.0
+streamlit_option_menu==0.4.0
 
