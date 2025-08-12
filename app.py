@@ -7,7 +7,6 @@ import geopandas as gd
 import os
 import pandas as pd
 import branca.colormap as cm
-from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
 import plotly.express as px
 from branca.colormap import StepColormap
 import matplotlib.colors as mcolors
@@ -684,3 +683,4 @@ elif menu == "Evaluasi Prediksi":
     st.markdown("""
     Perbandingan dilakukan antar hasil prediksi tahun 2034 dan 2044 dengan garis pantai historis untuk melihat tren abrasi atau akresi.
     """)
+
