@@ -1,0 +1,11 @@
+streamlit
+numpy
+folium
+streamlit-folium
+streamlit-option-menu
+geopandas
+pandas
+branca
+st-aggrid
+plotly
+matplotlib
