@@ -4,10 +4,14 @@ import folium
 from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 import geopandas as gd
+import os
 import pandas as pd
 import branca.colormap as cm
+from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
 import plotly.express as px
 from branca.colormap import StepColormap
+import matplotlib.colors as mcolors
+import matplotlib.cm as cm
 
 st.set_page_config(layout="wide", page_title="Dashboard Prediksi Garis Pantai Kabupaten Brebes")
 
@@ -151,7 +155,7 @@ with st.sidebar:
     st.markdown('</div>', unsafe_allow_html=True)
 
 if menu == "Home":
-    st.title("Garis Pantai Brebes")
+    st.title("Prediksi Perubahan Garis Pantai")
     ##################################
     # Layout card
     col1, col2, col3, col4 = st.columns(4)
@@ -239,35 +243,6 @@ if menu == "Home":
 
     # Grafik batang descending Panjang Garis Pantai
     df_sorted_length = data.sort_values(by="Panjang Garis Pantai", ascending=True)
-    fig_bar_length = px.bar(df_sorted_length,
-                            x="tahun", y="Panjang Garis Pantai",
-                            title="Panjang Garis Pantai",
-                            labels={"tahun": "Tahun", "Panjang Garis Pantai": "Panjang (m)"},
-                            text_auto=".2s")
-    fig_bar_length.update_layout(
-        plot_bgcolor="white",
-        paper_bgcolor="white",
-        font=dict(color="black"),
-        title_font=dict(color="black", size=16),
-        margin=dict(l=20, r=20, t=40, b=20),
-        shapes=[
-            dict(
-                type="rect",
-                xref="paper", yref="paper",
-                x0=0, y0=0, x1=1, y1=1,
-                line=dict(color="black", width=2),
-                fillcolor="rgba(0,0,0,0)"
-            )
-        ],
-        xaxis=dict(
-            title_font=dict(color="black", size=14),
-            tickfont=dict(color="black")
-        ),
-        yaxis=dict(
-            title_font=dict(color="black", size=14),
-            tickfont=dict(color="black")
-        )
-    )
 
     # Grafik garis Panjang Garis Pantai per tahun
     fig_line = px.line(data,
@@ -303,12 +278,11 @@ if menu == "Home":
     fig_line.update_yaxes(range=[0,max_length*1.05])
     
     # Grafik batang descending Uncertainty
-    df_sorted_unc = data.sort_values(by="Uncertainty", ascending=False)
-    fig_bar_unc = px.bar(df_sorted_unc,
+    fig_bar_unc = px.line(data,
                         x="tahun", y="Uncertainty",
                         title="Uncertainty Garis Pantai",
-                        labels={"tahun": "Tahun", "Uncertainty": "Nilai"},
-                        text_auto=".2f")
+                        markers=True,
+                        labels={"tahun": "Tahun", "Uncertainty": "Nilai"})
     fig_bar_unc.update_layout(
         plot_bgcolor="white",
         paper_bgcolor="white",
@@ -333,17 +307,17 @@ if menu == "Home":
             tickfont=dict(color="black")
         )
     )
+    max_length = data["Uncertainty"].max()
+    fig_bar_unc.update_yaxes(range=[0,max_length*1.05])
 
     # === 4. Tampilkan di dalam card ===
     with st.container():
         col_left, col_right= st.columns([2,2])
         with col_left:
-            fig_bar_length.update_layout(height=250)
-            st.plotly_chart(fig_bar_length, use_container_width=True)
-            fig_line.update_layout(height=250)
+            fig_line.update_layout(height=500)
             st.plotly_chart(fig_line, use_container_width=True)
         with col_right:
-            fig_bar_unc.update_layout(height=510)
+            fig_bar_unc.update_layout(height=500)
             st.plotly_chart(fig_bar_unc, use_container_width=True)
 
     ########################################
@@ -680,7 +654,3 @@ elif menu == "Evaluasi Prediksi":
     st.markdown("""
     Perbandingan dilakukan antar hasil prediksi tahun 2034 dan 2044 dengan garis pantai historis untuk melihat tren abrasi atau akresi.
     """)
-
-
-
-
