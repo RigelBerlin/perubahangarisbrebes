@@ -9,8 +9,6 @@ import pandas as pd
 import branca.colormap as cm
 import plotly.express as px
 from branca.colormap import StepColormap
-import matplotlib.colors as mcolors
-import matplotlib.cm as cm
 
 st.set_page_config(layout="wide", page_title="Dashboard Prediksi Garis Pantai Kabupaten Brebes")
 
@@ -653,4 +651,5 @@ elif menu == "Evaluasi Prediksi":
     st.markdown("""
     Perbandingan dilakukan antar hasil prediksi tahun 2034 dan 2044 dengan garis pantai historis untuk melihat tren abrasi atau akresi.
     """)
+
 
