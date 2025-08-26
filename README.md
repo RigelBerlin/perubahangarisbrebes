@@ -1,4 +1,4 @@
-#Dashboard Informasi Prediksi Garis Pantai#  
+<h1 align="center"> Dashboard Informasi Prediksi Garis Pantai </h1>
 <pre>
 Nama             : Nur Yudha Jati Prakoso  
 NIM              : 222112273  
