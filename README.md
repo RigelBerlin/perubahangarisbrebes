@@ -1,10 +1,10 @@
 #Dashboard Informasi Prediksi Garis Pantai#  
-
+<pre>
 Nama             : Nur Yudha Jati Prakoso  
 NIM              : 222112273  
 Kelas            : 4SD1  
 Dosen Pembimbing : Budi Yuniarto, S.S.T., M.Si.  
-
+</pre>
 &emsp; Aplikasi ini merupakan dashboard interaktif dengan menggunakan package Streamlit yang disediakan oleh Python yang menampilkan hasil deteksi, analisis, dan prediksi garis pantai yang terjadi di Kabupaten Brebes dengan menggunakan data dari citra satelit.
 
 Dashboard ini bertujuan untuk memvisualisasikan:  
